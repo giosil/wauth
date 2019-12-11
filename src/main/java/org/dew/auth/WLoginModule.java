@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.security.acl.Group;
 
 import java.util.Map;
-import java.util.Objects;
 
 import javax.security.auth.Subject;
 import javax.security.auth.callback.Callback;
@@ -73,7 +72,7 @@ public class WLoginModule implements LoginModule {
   @Override
   public boolean commit() throws LoginException {
     log("WLoginModule.commit()...");
-    if (Objects.isNull(userPrincipal) || Objects.isNull(rolePrincipal)) {
+    if (userPrincipal == null || rolePrincipal == null) {
       log("WLoginModule.commit() -> false");
       return false;
     }

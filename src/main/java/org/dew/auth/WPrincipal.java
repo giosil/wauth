@@ -1,8 +1,8 @@
 package org.dew.auth;
 
 import java.io.Serializable;
+
 import java.security.Principal;
-import java.util.Objects;
 
 public 
 class WPrincipal implements Principal, Serializable 
@@ -30,7 +30,8 @@ class WPrincipal implements Principal, Serializable
   {
     if (!(another instanceof Principal)) return false;
     String anotherName = Principal.class.cast(another).getName();
-    return Objects.equals(name, anotherName);
+    if(name == null && anotherName == null) return true;
+    return name != null && name.equals(anotherName);
   }
   
   @Override

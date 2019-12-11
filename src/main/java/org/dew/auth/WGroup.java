@@ -2,11 +2,11 @@ package org.dew.auth;
 
 import java.security.Principal;
 import java.security.acl.Group;
+
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public 
 class WGroup extends WPrincipal implements Group
@@ -55,6 +55,6 @@ class WGroup extends WPrincipal implements Group
   public 
   boolean removeMember(Principal user)
   {
-    return !Objects.isNull(members.remove(user.getName()));
+    return members.remove(user.getName()) != null;
   }
 }
