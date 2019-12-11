@@ -42,7 +42,10 @@ $JBOSS_HOME/standalone/configuration/standalone.xml
    <security-domains>
     <security-domain name="wauth" cache-type="default">
      <authentication>
-      <login-module code="org.dew.auth.WLoginModule" flag="optional" module="org.dew.auth"/>
+      <login-module code="org.dew.auth.WLoginModule" flag="optional" module="org.dew.auth">
+       <module-option name="host" value="localhost"/>
+       <module-option name="port" value="8080"/>
+      </login-module>
      </authentication>
     </security-domain>
    </security-domains>
