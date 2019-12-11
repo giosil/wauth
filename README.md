@@ -7,7 +7,7 @@ LoginModule implementation template.
 - `git clone https://github.com/giosil/wauth.git`
 - `mvn clean install`
 
-## Configuration example on JBoss EAP 6.0+ / Wildfly 9.0+ 
+## Configuration example on JBoss EAP 6.0+ / Wildfly 8.0.0+ 
 
 $JBOSS_HOME/modules/org/dew/auth/main/module.xml
 
@@ -52,7 +52,7 @@ $JBOSS_HOME/standalone/configuration/standalone.xml
 </server>
 ```
 
-[Web-Application].war/WEB-INF/web.xml
+web-application.war/WEB-INF/web.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -86,7 +86,7 @@ $JBOSS_HOME/standalone/configuration/standalone.xml
 </web-app>
 ```
 
-[Web-Application.war]/WEB-INF/jboss-web.xml
+web-application.war/WEB-INF/jboss-web.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
