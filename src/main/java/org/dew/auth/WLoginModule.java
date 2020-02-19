@@ -2,7 +2,7 @@ package org.dew.auth;
 
 import java.security.Principal;
 import java.security.acl.Group;
-
+import java.util.Calendar;
 import java.util.Map;
 
 import javax.security.auth.Subject;
@@ -99,11 +99,29 @@ public class WLoginModule implements LoginModule {
   }
   
   protected void log(String message) {
-    System.out.println(message);
+    Calendar cal = Calendar.getInstance();
+    
+    int iYear  = cal.get(Calendar.YEAR);
+    int iMonth = cal.get(Calendar.MONTH) + 1;
+    int iDay   = cal.get(Calendar.DATE);
+    int iHour  = cal.get(Calendar.HOUR_OF_DAY);
+    int iMin   = cal.get(Calendar.MINUTE);
+    int iSec   = cal.get(Calendar.SECOND);
+    String sYear  = String.valueOf(iYear);
+    String sMonth = iMonth < 10 ? "0" + iMonth : String.valueOf(iMonth);
+    String sDay   = iDay   < 10 ? "0" + iDay   : String.valueOf(iDay);
+    String sHour  = iHour  < 10 ? "0" + iHour  : String.valueOf(iHour);
+    String sMin   = iMin   < 10 ? "0" + iMin   : String.valueOf(iMin);
+    String sSec   = iSec   < 10 ? "0" + iSec   : String.valueOf(iSec);
+    
+    String sDate  = sYear + "-" + sMonth + "-" + sDay;
+    String sTime  = sHour + ":" + sMin   + ":" + sSec;
+    
+    System.out.println(sDate + " " + sTime + " " + message);
   }
   
   protected void log(String message, Exception exception) {
-    System.out.println(message + ": " + exception);
+    log(message + ": " + exception);
   }
   
   protected String check(String username, String password) throws Exception {
