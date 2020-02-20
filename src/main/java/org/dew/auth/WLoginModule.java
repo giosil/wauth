@@ -45,9 +45,15 @@ public class WLoginModule implements LoginModule {
       String username = nameCallback.getName();
       String password = String.valueOf(passCallback.getPassword());
       
-      log("WLoginModule.check(" + username + ",*)...");
-      String role = check(username, password);
-      log("WLoginModule.check(" + username + ",*) -> " + role);
+      log("WCache.read(" + username + ",*)...");
+      String role = WCache.read(username, password);
+      log("WCache.read(" + username + ",*) -> " + role);
+      
+      if(role == null || role.length() == 0) {
+        log("WLoginModule.check(" + username + ",*)...");
+        role = check(username, password);
+        log("WLoginModule.check(" + username + ",*) -> " + role);
+      }
       
       if(role != null && role.length() > 0) {
         userPrincipal = new WPrincipal(username);
@@ -56,6 +62,8 @@ public class WLoginModule implements LoginModule {
         group.addMember(new WPrincipal(role));
         
         rolePrincipal = group;
+        
+        WCache.write(username, password, role);
         
         log("WLoginModule.login() -> true");
         return true;
@@ -129,7 +137,7 @@ public class WLoginModule implements LoginModule {
     if(password == null || password.length() == 0) return null;
     boolean check = username.equals(password);
     if(!check) return null;
-    if(username.toLowerCase().startsWith("adm")) return "admin";
-    return "oper";
+    if(username.toLowerCase().startsWith("op")) return "oper";
+    return "admin";
   }
 }
